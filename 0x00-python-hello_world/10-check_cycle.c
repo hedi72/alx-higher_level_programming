@@ -11,7 +11,7 @@ slow = list;
 fast = list;
 if (!list || !list->next)
 return (0);
-for (;fast && fast->next;)
+for ( ; fast && fast->next;)
 {
 fast = fast->next->next;
 slow = slow->next;
