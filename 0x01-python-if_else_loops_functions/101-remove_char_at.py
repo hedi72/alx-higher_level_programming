@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 def remove_char_at(str, n):
-    car = " "
+    copy = ""
     for i in range(0, len(str)):
         if i != n:
-            car += str[i]
-    return car
+            copy += str[i]
+    return copy
