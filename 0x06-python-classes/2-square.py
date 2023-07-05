@@ -2,16 +2,11 @@
 """Define a class Square."""
 
 
-
 class Square:
-    """ class square defines a square by size:
-    size must be an integer
-    size must not be negative """
 
+    """ class square defines a square by size """
     def __init__(self, size=0):
-        """ initialize square objects,
-        sets size equal to 0 by default,
-        checks if size has the correct type and value """
+        """ initialize square object """
 
         if type(size) is not int:
             raise TypeError("size must be an integer")
