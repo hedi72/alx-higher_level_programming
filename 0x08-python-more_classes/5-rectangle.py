@@ -63,7 +63,7 @@ class Rectangle:
     def __repr__(self):
         """ returns a string similar to code of generating new object """
         return "Rectangle({}, {})".format(self.__width, self.__height)
-        
+
     def __del__(self):
         """ called when an object is deleted with del """
         print("Bye rectangle...")
