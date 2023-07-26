@@ -39,7 +39,5 @@ class Rectangle:
         rect_str = ""
         for _ in range(self.height):
             rect_str += "#" * self.width + "\n"
-        return rect_str[:-1]  # Remove the last newline
+        return rect_str
 
-    def __repr__(self):
-        return f"Rectangle({self.width}, {self.height})"
