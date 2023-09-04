@@ -4,10 +4,8 @@ Defines Rectangle class
 """
 
 
-
 class Rectangle():
-        """
-        Initialize Rectangle class
-        """
-
-        pass
+    """
+    Initialize Rectangle class
+    """
+    pass
