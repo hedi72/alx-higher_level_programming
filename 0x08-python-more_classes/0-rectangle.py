@@ -9,4 +9,5 @@ class Rectangle():
         """
         Initialize Rectangle class
         """
+
         pass
