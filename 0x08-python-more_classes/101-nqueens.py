@@ -1,25 +1,24 @@
 #!/usr/bin/python3
+"""the queens gambit"""
+
+
 import sys
 
-def isSafe(board, row, col, n):
-    for i in range(col):
-        if board[i] == row or \
-           board[i] - i == row - col or \
-           board[i] + i == row + col:
-            return False
-    return True
+def nqueens(n):
+    def backtrack(queens, xy_dif, xy_sum):
+        p = len(queens)
+        if p == n:
+            result.append(queens)
+            return
+        for q in range(n):
+            if q not in queens and p-q not in xy_dif and p+q not in xy_sum:
+                backtrack(queens+[q], xy_dif+[p-q], xy_sum+[p+q])
 
-def solveNQueens(board, col, n):
-    if col == n:
-        print(board)
-        return
-    for row in range(n):
-        if isSafe(board, row, col, n):
-            board[col] = row
-            solveNQueens(board, col + 1, n)
-            board[col] = -1
+    result = []
+    backtrack([],[],[])
+    return result
 
-def main():
+if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         exit(1)
@@ -31,5 +30,6 @@ def main():
     if n < 4:
         print("N must be at least 4")
         exit(1)
-    board = [-1 for i in range(n)]
-    solveNQueens(board, 0, n)
+    solutions = nqueens(n)
+    for solution in solutions:
+        print([[i, solution[i]] for i in range(n)])
