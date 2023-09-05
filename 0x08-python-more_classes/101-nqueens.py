@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-"""the queens gambit"""
-
 
 import sys
 
