@@ -67,7 +67,7 @@ class Rectangle():
             return 0
 
         return (2 * self.__width) + (2 * self.__height)
-        
+
     def __str__(self):
         """
             Rectangular pattern
