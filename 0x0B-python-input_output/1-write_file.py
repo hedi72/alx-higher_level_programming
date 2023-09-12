@@ -4,7 +4,7 @@ contains the definition of the write_file function
 """
 
 
-def write_file(filename="", txt=""):
+def write_file(filename="", text=""):
     """writes a string to a text file and returns the numbers
     """
 
