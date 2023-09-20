@@ -1,41 +1,43 @@
 #!/usr/bin/python3
-import sys
-import signal
+"""
+Script that reads stdin line by line and computes relevant metrics
+"""
 
-# Initialize variables to store metrics
-total_file_size = 0
-status_code_counts = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
-line_count = 0
+if __name__ == "__main__":
+    import sys
 
-def print_metrics():
-    print(f"File size: {total_file_size}")
-    for status_code in sorted(status_code_counts):
-        if status_code_counts[status_code] > 0:
-            print(f"{status_code}: {status_code_counts[status_code]}")
-
-# Function to handle keyboard interruption (CTRL + C)
-def signal_handler(sig, frame):
-    print_metrics()
-    sys.exit(0)
-
-# Register the signal handler for CTRL + C
-signal.signal(signal.SIGINT, signal_handler)
-
-# Process input line by line
-for line in sys.stdin:
+    size = 0
+    status_tally = {"200": 0, "301": 0, "400": 0, "401": 0,
+                    "403": 0, "404": 0, "405": 0, "500": 0}
+    linenum = 0
     try:
-        line = line.strip()
-        parts = line.split()
-        if len(parts) >= 7:
-            file_size = int(parts[-1])
-            status_code = int(parts[-2])
-            total_file_size += file_size
-            status_code_counts[status_code] += 1
-            line_count += 1
-            if line_count % 10 == 0:
-                print_metrics()
-    except ValueError:
-        pass  # Ignore lines with invalid format
+        for line in sys.stdin:
+            tokens = line.split()
+            if len(tokens) >= 2:
+                num = linenum
+                if tokens[-2] in status_tally:
+                    status_tally[tokens[-2]] += 1
+                    linenum += 1
+                    try:
+                        size += int(tokens[-1])
+                        if num == linenum:
+                            linenum += 1
+                    except:
+                        if num == linenum:
+                            continue
+            if linenum % 10 == 0:
+                print("File size: {}".format(size))
+                for key, value in sorted(status_tally.items()):
+                    if value:
+                        print("{}: {}".format(key, value))
+        print("File size: {}".format(file_size))
+        for key, value in sorted(status_tally.items()):
+            if value:
+                print("{}: {}".format(key, value))
 
-# Print final metrics after processing all input
-print_metrics()
+    except KeyboardInterrupt:
+        print("File size: {}".format(size))
+        for key, value in sorted(status_tally.items()):
+            if value:
+                print("{}: {}".format(key, value))
+        raise
