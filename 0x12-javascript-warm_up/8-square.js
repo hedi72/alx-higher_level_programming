@@ -8,9 +8,9 @@ if (isNaN(size) || process.argv[2] === undefined) {
 } else {
   if (size > 0) {
     for (let i = 0; i < size; i++) {
-      let row = "";
+      let row = '';
       for (let j = 0; j < size; j++) {
-        row += "X";
+        row += 'X';
       }
       console.log(row);
     }
