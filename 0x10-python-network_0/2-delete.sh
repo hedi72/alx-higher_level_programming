@@ -1,3 +1,3 @@
 #!/bin/bash
-# cURL M3thod.
-curl -sX DELETE "$1"
+# Takes a URL and sends a DELETE request to it and displays the body
+curl -s -X DELETE "$1"
