@@ -1,14 +1,9 @@
 #!/usr/bin/python3
-""" a Python script that requests an url and displays
-the value of the variable X-Request-Id in the response header
-"""
+""" module doc """
 import requests
 import sys
 
-
-if __name__ == '__main__':
-    try:
-        r = requests.get(sys.argv[1])
-        print(r.headers['X-Request-Id'])
-    except:
-        pass
+if __name__ == "__main__":
+    url = sys.argv[1]
+    res = requests.get(url)
+    print(res.headers.get('X-Request-Id'))
