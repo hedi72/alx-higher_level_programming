@@ -1,21 +1,21 @@
 #!/usr/bin/python3
-"""
-a Python script that takes in a letter and sends a POST request to
-http://0.0.0.0:5000/search_user with the letter as a parameter.
-"""
+""" module doc """
 import requests
 import sys
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        q = sys.argv[1]
+    else:
+        q = ''
+    url = 'http://0.0.0.0:5000/search_user'
+    params = {'q': q}
+    res = requests.post(url, data=params)
     try:
-        qv = sys.argv[1]
-    except:
-        qv = ''
-    r = requests.post('http://0.0.0.0:5000/search_user', data={'q': qv})
-    try:
-        print('[{}] {}'.format(r.json()['id'], r.json()['name']))
-    except ValueError:
+        resjson = res.json()
+        if resjson:
+            print(f'[{resjson['id']}] {resjson['name']}')
+        else:
+            print('No result')
+    except Exception:
         print('Not a valid JSON')
-    except:
-        print('No result')
